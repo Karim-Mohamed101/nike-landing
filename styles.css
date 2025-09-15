@@ -1,0 +1,117 @@
+@layer base {
+  :root{
+    --radius: 1rem;
+  }
+
+  body{
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+}
+
+/* Simple utility for blurred gradient shapes */
+.blur-shape{
+  position:absolute;
+  border-radius:9999px;
+  filter:blur(48px);
+  opacity:.3;
+}
+
+.logo-bounce{
+  transition:transform .5s cubic-bezier(.4,0,.2,1), box-shadow .4s cubic-bezier(.4,0,.2,1);
+  will-change: transform, box-shadow;
+}
+.logo-bounce:hover{
+  transform:scale(1.08) rotate(-2deg);
+  box-shadow:0 8px 32px 0 rgba(0,0,0,0.12);
+}
+
+/* Shoe image hover effect */
+.shoe-img{
+  transition: transform .5s cubic-bezier(.4,0,.2,1), box-shadow .4s cubic-bezier(.4,0,.2,1);
+  will-change: transform, box-shadow;
+}
+.shoe-img:hover{
+  transform: scale(1.07) rotate(1deg);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+  z-index:2;
+}
+
+/* Button hover effect */
+.btn-animated {
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s cubic-bezier(.4,0,.2,1), box-shadow .2s cubic-bezier(.4,0,.2,1), background .5s, filter .3s;
+  will-change: transform, box-shadow, background, filter;
+  z-index: 1;
+}
+.btn-animated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  z-index: -1;
+  transition: background-position 0.5s cubic-bezier(.4,0,.2,1);
+  background-size: 200% 200%;
+  background-position: left top;
+  opacity: 0.7;
+}
+.btn-animated:hover::before {
+  background-position: right bottom;
+  opacity: 1;
+}
+.btn-animated:hover {
+  transform: scale(1.07) translateY(-3px) rotate(-1deg);
+  box-shadow: 0 8px 32px 0 rgba(34,197,94,0.18), 0 0 0 4px rgba(34,197,94,0.08);
+  filter: brightness(1.12) saturate(1.2);
+}
+
+/* Arrow slide-in effect for primary buttons */
+.btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  transition: color .3s;
+}
+.btn-arrow .arrow {
+  display: inline-block;
+  transform: translateX(-12px);
+  opacity: 0;
+  transition: transform .4s cubic-bezier(.4,0,.2,1), opacity .4s;
+}
+.btn-animated:hover .arrow {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Animated bubbles like original */
+.bubble{
+  position:absolute;
+  border-radius:9999px;
+  animation:floatUp linear infinite;
+  opacity:.9;
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1);opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(-120vh) scale(1.2);opacity:0}
+}
+
+/* subtle pulse */
+.pulse {
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);opacity:0.7}
+  50%{transform:scale(1.08);opacity:1}
+  100%{transform:scale(1);opacity:0.7}
+}
+
+/* small responsive tweaks */
+@media (min-width:1024px){
+  h1{font-size:6rem}
+}
+
+
